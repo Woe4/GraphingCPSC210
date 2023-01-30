@@ -3,16 +3,17 @@
 I am planning to create **graphing** software.
 This software could take in functions in terms of x 
 or theta and this could be graphed in cartesian 
-coordinates or polar coordinates. 
+coordinates or polar coordinates (kind of like desmos).
 
 This program could be used by math/eng/physics people
-who want to graph functions.
+who want to graph functions and would like some more
+visualization of integrals.
 
 This project is interesting to me because I'm looking
 into physics and math and how they could be integrated
-with computer science. How we can use computer
-science as an extremely powerful tool to help
-work with abstract things. 
+with computer science. Computer
+science is an extremely powerful tool and can
+be helpful in working with abstract concepts. 
 
 
 
@@ -22,12 +23,13 @@ work with abstract things.
 ## User Stories
 
 As a user, I want to be able to 
-- input a function
+- input a function (and see its graph)
 - change the scope of the displayed graph
 - integrate with different accuracies
 - change the type of graph (cartesian and polar)
 - keep a history of functions (which can be
 graphed at the same time)
+- change the accuracy of the graph
 
 **Ambitious ideas**
 
