@@ -1,20 +1,20 @@
 package model;
 
 public class Coordinate {
-    private int coordX;
-    private int coordY;
+    private double coordX;
+    private double coordY;
 
 
-    public Coordinate(int x, int y) {
+    public Coordinate(double x, double y) {
         this.coordX = x;
         this.coordY = y;
     }
 
-    public int getCoordX() {
+    public double getCoordX() {
         return coordX;
     }
 
-    public int getCoordY() {
+    public double getCoordY() {
         return coordY;
     }
 }
