@@ -1,10 +1,13 @@
 package model;
 
+
+// An ordered pair
 public class Coordinate {
-    private double coordX;
-    private double coordY;
+    private final double coordX;
+    private final double coordY;
 
 
+    // EFFECTS: Makes a Coordinate at (x, y)
     public Coordinate(double x, double y) {
         this.coordX = x;
         this.coordY = y;
