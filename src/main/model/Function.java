@@ -30,6 +30,12 @@ public class Function {
         return result;
     }
 
+    //TODO
+    // EFFECTS: returns the curve of the function with a give accuracy
+    public Curve getCurve(double accuracy) {
+        return null; // stub
+    }
+
     // EFFECTS: returns the function as a string
     public String getFunctionString() {
         return functionString;
