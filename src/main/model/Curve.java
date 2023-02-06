@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Curve {
 
-    List<Coordinate> coordinateList;
+    ArrayList<Coordinate> coordinateList;
 
     public Curve() {
         coordinateList = new ArrayList<Coordinate>();
@@ -18,7 +18,12 @@ public class Curve {
     }
 
 
+    // EFFECTS: returns coordinate at given index
+    public Coordinate getCoordinate(int index) {
+        return coordinateList.get(index);
+    }
 
+    // EFFECTS: returns the list reference
     public List<Coordinate> getCoordinateList() {
         return coordinateList;
     }

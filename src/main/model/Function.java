@@ -30,10 +30,15 @@ public class Function {
         return result;
     }
 
-    //TODO
-    // EFFECTS: returns the curve of the function with a give accuracy
-    public Curve getCurve(double accuracy) {
-        return null; // stub
+    // REQUIRES: start < end and accuracy < (end-start)
+    // EFFECTS: returns Curve of the function with the given accuracy from start to end
+    public Curve getCurve(double accuracy, double start, double end) throws ScriptException {
+        Curve curve = new Curve();
+        while (end >= start) {
+            curve.addCoordinate(new Coordinate(start, evaluateFunction(start)));
+            start += accuracy;
+        }
+        return curve; // stub
     }
 
     // EFFECTS: returns the function as a string
