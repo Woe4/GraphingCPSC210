@@ -17,6 +17,14 @@ public class FunctionTest {
         function2 = new Function("x*x");
     }
 
+    private double function1(double x) {
+        return x+1;
+    }
+
+    private double function2(double x) {
+        return (x) * (x);
+    }
+
     @Test
     public void testFunction() {
         assertEquals("x+1", function1.getFunctionString());
@@ -39,5 +47,11 @@ public class FunctionTest {
         Coordinate coord2 = function2.getCoord(-2.0);
         assertEquals(-2, coord2.getCoordX());
         assertEquals(4, coord2.getCoordY());
+    }
+
+    // TODO
+    @Test
+    public void testGetCurve() throws ScriptException {
+
     }
 }
