@@ -49,9 +49,28 @@ public class FunctionTest {
         assertEquals(4, coord2.getCoordY());
     }
 
-    // TODO
-    @Test
-    public void testGetCurve() throws ScriptException {
 
+    @Test
+    public void testGetCurveSimple() throws ScriptException {
+        Curve function1Curve = function1.getCurve(0.5, 0, 20);
+        double i = 0;
+        while (i <= 20) {
+            assertEquals(function1(i), function1Curve.getCoordinate((int) (2 * i)).getCoordY());
+            assertEquals(i, function1Curve.getCoordinate((int) (2 * i)).getCoordX());
+            i += 0.5;
+        }
+    }
+
+    @Test
+    public void testGetCurveComplex() throws ScriptException {
+        Curve curve = function2.getCurve(0.1, -100, 50);
+        double i = -100;
+        int index = 0;
+        while (i <= 50) {
+            assertEquals(function2(i), curve.getCoordinate(index).getCoordY());
+            assertEquals(i, curve.getCoordinate(index).getCoordX());
+            i += 0.1;
+            index++;
+        }
     }
 }

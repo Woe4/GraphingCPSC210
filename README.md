@@ -26,7 +26,6 @@ As a user, I want to be able to
 - input a function (and see its graph)
 - change the scope of the displayed graph
 - integrate with different accuracies
-- change the type of graph (cartesian and polar)
 - keep a history of functions (which can be
 graphed at the same time)
 - change the accuracy of the graph
