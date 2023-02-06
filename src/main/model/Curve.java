@@ -28,6 +28,7 @@ public class Curve {
         return coordinateList.size();
     }
 
+
     // EFFECTS: returns the list reference
     public List<Coordinate> getCoordinateList() {
         return coordinateList;
