@@ -37,9 +37,6 @@ public class TerminalUI {
     //          getting terminal sizes and cursor positions
     //          getting the domain and range to graph in
     public TerminalUI() throws IOException {
-        function = new Function(getUserFunction());
-        domain = getUserDomain();
-        range = getUserRange();
         terminal = defaultTerminalFactory.createTerminal();
 
         startPosition = terminal.getCursorPosition();
@@ -50,23 +47,9 @@ public class TerminalUI {
 
     }
 
-    // EFFECTS: Reads console input and returns that value as a double
-    private double getUserRange() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter range length:");
-        return Double.parseDouble(sc.nextLine());
-    }
-
-    // EFFECTS: Reads console input and returns that value as a double
-    private double getUserDomain() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter domain length:");
-        return Double.parseDouble(sc.nextLine());
-    }
-
 
     // EFFECTS: draws axes and curve, gets definite integral
-    public void start() throws IOException, InterruptedException {
+    public void start() {
         try {
             drawAxes();
             drawCurve();
@@ -74,7 +57,9 @@ public class TerminalUI {
             getDefiniteIntegral();
 
         } catch (IOException | ScriptException e) {
-            e.printStackTrace();
+            System.out.println("Invalid input");
+
+            getUserInputs();
         }
 
     }
@@ -111,12 +96,37 @@ public class TerminalUI {
         }
     }
 
+    // Gets user input for function, range and domain
+    public void getUserInputs() {
+        function = new Function(getUserFunction());
+        range = getUserRange();
+        domain = getUserDomain();
+        start();
+    }
+
+    // EFFECTS: Reads console input and returns that value as a String
     private String getUserFunction() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter function: y = ");
         return sc.nextLine();
     }
 
+    // EFFECTS: Reads console input and returns that value as a double
+    private double getUserRange() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter range length:");
+        return Double.parseDouble(sc.nextLine());
+    }
+
+    // EFFECTS: Reads console input and returns that value as a double
+    private double getUserDomain() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter domain length:");
+        return Double.parseDouble(sc.nextLine());
+    }
+
+
+    // EFFECTS: Draws the y axis and x axis in middle of terminal
     private void drawAxes() throws IOException {
         terminal.setForegroundColor(TextColor.ANSI.WHITE);
         for (int row = 0; row < terminalSize.getRows(); row++) {

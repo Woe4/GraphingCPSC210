@@ -18,13 +18,22 @@ public class Function {
 
     // EFFECTS: returns function evaluated at given x value
     public double evaluateFunction(double x) throws ScriptException {
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+        try {
+            ScriptEngineManager mgr = new ScriptEngineManager();
+            ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
-        String stringX = Double.toString(x);
-        String functionWithX = functionString.replace("x", "(" + stringX + ")");
-        double d = Double.valueOf((engine.eval(functionWithX).toString()));
-        return d;
+            String stringX = Double.toString(x);
+            String functionWithX = functionString.replace("x", "(" + stringX + ")");
+            double d = Double.valueOf((engine.eval(functionWithX).toString()));
+            return d;
+        } catch (ScriptException e) {
+            // not much we can do here
+            System.out.println("Invalid script/function");
+            e.printStackTrace();
+
+            return -1;
+        }
+
 
     }
 

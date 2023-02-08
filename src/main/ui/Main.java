@@ -7,7 +7,7 @@ public class Main {
         // create and start the game
         TerminalUI terminalHandler = new TerminalUI();
 
-        terminalHandler.start();
+        terminalHandler.getUserInputs();
 
     }
 }
