@@ -46,4 +46,5 @@ class CurveTest {
         aCurve.addCoordinate(new Coordinate(14, -3.7));
         assertEquals(2, aCurve.getNumberOfCoordinate());
     }
+
 }
