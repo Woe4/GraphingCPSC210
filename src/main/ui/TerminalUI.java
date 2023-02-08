@@ -78,9 +78,10 @@ public class TerminalUI {
 
         for (int i = 0; i < curve.getNumberOfCoordinate(); i++) {
             if (Math.abs(curve.getCoordinate(i).getCoordY()) < (range / 2)) {
-                int row =  (int) (-1 * (Math.round(curve.getCoordinate(i).getCoordY() / rowStep)) + numRows / 2);
+                int row =  (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
+                int column = (int) Math.round(i * columnStep * columnStep);
 
-                terminal.setCursorPosition(startPosition.withRelativeColumn(i).withRelativeRow(row));
+                terminal.setCursorPosition(startPosition.withRelativeColumn(column).withRelativeRow(row));
                 terminal.putCharacter('⬤');
                 terminal.flush();
             }
