@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
+// A class to display the function in a console
+// THIS IS VERY LOW RESOLUTION SO IT LOOKS BAD
+
 public class TerminalUI {
 
     private DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
@@ -29,6 +32,10 @@ public class TerminalUI {
     private double domain;
     private double range;
 
+    // EFFECTS: gets terminal setup; this includes:
+    //          getting the user function
+    //          getting terminal sizes and cursor positions
+    //          getting the domain and range to graph in
     public TerminalUI() throws IOException {
         function = new Function(getUserFunction());
         domain = getUserDomain();
@@ -43,12 +50,14 @@ public class TerminalUI {
 
     }
 
+    // EFFECTS: Reads console input and returns that value as a double
     private double getUserRange() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter range length:");
         return Double.parseDouble(sc.nextLine());
     }
 
+    // EFFECTS: Reads console input and returns that value as a double
     private double getUserDomain() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter domain length:");
@@ -56,6 +65,7 @@ public class TerminalUI {
     }
 
 
+    // EFFECTS: draws axes and curve, gets definite integral
     public void start() throws IOException, InterruptedException {
         try {
             drawAxes();
@@ -69,6 +79,7 @@ public class TerminalUI {
 
     }
 
+    // EFFECTS: Reads console input and returns integral value if asked for
     private void getDefiniteIntegral() throws ScriptException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Find definite integral? (y/n)");

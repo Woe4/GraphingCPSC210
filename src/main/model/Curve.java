@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// A list of coordinates.
+// You can add more coordinates and get coordinates but
+// you can't take away coordinates from the list.
 public class Curve {
 
     ArrayList<Coordinate> coordinateList;

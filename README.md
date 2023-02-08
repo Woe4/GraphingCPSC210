@@ -23,7 +23,9 @@ be helpful in working with abstract concepts.
 ## User Stories
 
 As a user, I want to be able to 
-- input a function (and see its graph)
+- input a function
+- see an arbitrary amount of graphed points 
+of the function (adding points to a curve)
 - change the scope of the displayed graph
 - integrate with different accuracies
 - keep a history of functions (which can be

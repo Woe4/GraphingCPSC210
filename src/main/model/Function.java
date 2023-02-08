@@ -4,6 +4,10 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 
+
+// This is the class that deals with a function (like y = f(x) kind of function).
+// You can get the function evaluated at any point.
+//
 public class Function {
 
     private final String functionString;

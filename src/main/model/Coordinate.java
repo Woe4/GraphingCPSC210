@@ -1,7 +1,8 @@
 package model;
 
 
-// An ordered pair
+// An ordered pair.
+// A coordinate which has an x value and a y value.
 public class Coordinate {
     private final double coordX;
     private final double coordY;
