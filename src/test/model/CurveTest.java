@@ -37,4 +37,13 @@ class CurveTest {
         assertEquals(14, aCurve.getCoordinate(1).getCoordX());
         assertEquals(-3.7, aCurve.getCoordinate(1).getCoordY());
     }
+
+    @Test
+    public void testGetNumberOfCoordinates() {
+        assertEquals(0, aCurve.getNumberOfCoordinate());
+        aCurve.addCoordinate(new Coordinate(-1.1, 1));
+        assertEquals(1, aCurve.getNumberOfCoordinate());
+        aCurve.addCoordinate(new Coordinate(14, -3.7));
+        assertEquals(2, aCurve.getNumberOfCoordinate());
+    }
 }
