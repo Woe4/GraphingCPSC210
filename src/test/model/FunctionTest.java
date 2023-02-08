@@ -73,4 +73,10 @@ public class FunctionTest {
             index++;
         }
     }
+
+    @Test
+    public void testTakeDefiniteIntegral() throws ScriptException {
+        double result = function1.takeDefiniteIntegral(1, 0, 10);
+        assertEquals(11 * 5, result);
+    }
 }

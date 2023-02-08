@@ -38,8 +38,21 @@ public class Function {
             curve.addCoordinate(new Coordinate(start, evaluateFunction(start)));
             start += accuracy;
         }
-        return curve; // stub
+        return curve;
     }
+
+    // REQUIRES: start < end and accuracy < (end-start)
+    // EFFECTS: returns area under curve approximated as right Riemann Sum
+    public double takeDefiniteIntegral(double accuracy, double start, double end) throws ScriptException {
+        double result = 0;
+        while (end > start) {
+            result += evaluateFunction(start) * accuracy;
+            start += accuracy;
+        }
+        return result;
+
+    }
+
 
     // EFFECTS: returns the function as a string
     public String getFunctionString() {

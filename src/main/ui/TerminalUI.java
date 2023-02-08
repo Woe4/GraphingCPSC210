@@ -11,6 +11,7 @@ import model.Function;
 
 import javax.script.ScriptException;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TerminalUI {
@@ -59,13 +60,23 @@ public class TerminalUI {
         try {
             drawAxes();
             drawCurve();
-            System.out.println(numColumns);
-            System.out.println(numRows);
+
+            getDefiniteIntegral();
 
         } catch (IOException | ScriptException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void getDefiniteIntegral() throws ScriptException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Find definite integral? (y/n)");
+        if (Objects.equals(sc.nextLine(), "y")) {
+            System.out.println("Accuracy: ");
+            double accuracy = Double.parseDouble(sc.nextLine());
+            System.out.println(function.takeDefiniteIntegral(accuracy, -1 * domain / 2, domain / 2));
+        }
     }
 
     private void drawCurve() throws ScriptException, IOException {
