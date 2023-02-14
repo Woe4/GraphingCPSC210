@@ -1,13 +1,22 @@
 package ui;
 
+import model.FunctionHistory;
+
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // create and start the game
-        TerminalUI terminalHandler = new TerminalUI();
+    public static void main(String[] args) {
+        // create and start
 
-        terminalHandler.getUserInputs();
+        try {
+            TerminalUI terminalHandler = new TerminalUI();
+            terminalHandler.getUserInputs();
+
+        } catch (Exception e) {
+            System.out.println("L");
+            e.printStackTrace();
+        }
+
 
     }
 }

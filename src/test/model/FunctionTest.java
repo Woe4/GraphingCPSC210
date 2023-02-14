@@ -32,7 +32,7 @@ public class FunctionTest {
     }
 
     @Test
-    public void testEvaluateFunction() throws ScriptException {
+    public void testEvaluateFunction() {
         double val1 = function1.evaluateFunction(1.1);
         assertEquals(2.1, val1);
         double val2 = function2.evaluateFunction(4.0);
@@ -40,7 +40,7 @@ public class FunctionTest {
     }
 
     @Test
-    public void testGetCoord() throws ScriptException {
+    public void testGetCoord() {
         Coordinate coord1 = function1.getCoord(1.0);
         assertEquals(1, coord1.getCoordX());
         assertEquals(2, coord1.getCoordY());
@@ -51,7 +51,8 @@ public class FunctionTest {
 
 
     @Test
-    public void testGetCurveSimple() throws ScriptException {
+    // Testing 40 points are correct
+    public void testGetCurveSimple() {
         Curve function1Curve = function1.getCurve(0.5, 0, 20);
         double i = 0;
         while (i <= 20) {
@@ -62,7 +63,8 @@ public class FunctionTest {
     }
 
     @Test
-    public void testGetCurveComplex() throws ScriptException {
+    // Testing 1500 points are correct
+    public void testGetCurveComplex() {
         Curve curve = function2.getCurve(0.1, -100, 50);
         double i = -100;
         int index = 0;
@@ -75,7 +77,7 @@ public class FunctionTest {
     }
 
     @Test
-    public void testTakeDefiniteIntegral() throws ScriptException {
+    public void testTakeDefiniteIntegral() {
         double result = function1.takeDefiniteIntegral(1, 0, 10);
         assertEquals(11 * 5, result);
     }

@@ -8,6 +8,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import model.Coordinate;
 import model.Curve;
 import model.Function;
+import model.FunctionHistory;
 
 import javax.script.ScriptException;
 import java.io.IOException;
@@ -32,6 +33,8 @@ public class TerminalUI {
     private double domain;
     private double range;
 
+    private FunctionHistory history = new FunctionHistory();
+
     // EFFECTS: gets terminal setup; this includes:
     //          getting the user function
     //          getting terminal sizes and cursor positions
@@ -49,19 +52,42 @@ public class TerminalUI {
 
 
     // EFFECTS: draws axes and curve, gets definite integral
-    public void start() {
+    public void start() throws IOException {
         try {
             drawAxes();
             drawCurve();
 
+            printHistory();
             getDefiniteIntegral();
+
+            restart();
 
         } catch (IOException | ScriptException e) {
             System.out.println("Invalid input");
 
             getUserInputs();
+        } finally {
+            terminal.close();
         }
 
+    }
+
+    // EFFECTS: gets another function
+    private void restart() throws IOException {
+        terminal.clearScreen();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("New function? (y/n)");
+        if (Objects.equals(sc.nextLine(), "y")) {
+            getUserInputs();
+        }
+    }
+
+    // EFFECTS: prints all functions in history
+    private void printHistory() {
+        System.out.println("History: \n");
+        for (String functionString : history.getFunctionStrings()) {
+            System.out.println(functionString);
+        }
     }
 
     // EFFECTS: Reads console input and returns integral value if asked for
@@ -75,6 +101,7 @@ public class TerminalUI {
         }
     }
 
+    //
     private void drawCurve() throws ScriptException, IOException {
         double columnStep = numColumns / domain;
         double rowStep = numRows / range;
@@ -97,10 +124,11 @@ public class TerminalUI {
     }
 
     // Gets user input for function, range and domain
-    public void getUserInputs() {
+    public void getUserInputs() throws IOException {
         function = new Function(getUserFunction());
-        range = getUserRange();
         domain = getUserDomain();
+        range = getUserRange();
+        history.addFunction(function);
         start();
     }
 
