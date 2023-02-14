@@ -37,6 +37,12 @@ public class FunctionTest {
         assertEquals(2.1, val1);
         double val2 = function2.evaluateFunction(4.0);
         assertEquals(16, val2);
+
+        Function function3 = new Function("hello");
+        double val3 = function3.evaluateFunction(20);
+        assertEquals(-1, val3);
+        val3 = function3.evaluateFunction(-2);
+        assertEquals(-1, val3);
     }
 
     @Test
