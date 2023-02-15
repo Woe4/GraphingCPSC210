@@ -31,6 +31,8 @@ of the function (adding points to a curve)
 - keep a history of functions (which can be
 graphed at the same time)
 - change the accuracy of the graph
+- optionally save my history of functions
+- optionally load my history of functions
 
 **Ambitious ideas**
 
