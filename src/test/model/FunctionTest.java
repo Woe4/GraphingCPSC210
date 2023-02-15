@@ -7,6 +7,7 @@ import javax.script.ScriptException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// test class for Function Class
 public class FunctionTest {
     Function function1;
     Function function2;
@@ -17,6 +18,7 @@ public class FunctionTest {
         function2 = new Function("x*x");
     }
 
+    // Helper functions
     private double function1(double x) {
         return x+1;
     }
@@ -26,12 +28,14 @@ public class FunctionTest {
     }
 
     @Test
+    // EFFECTS: test constructor
     public void testFunction() {
         assertEquals("x+1", function1.getFunctionString());
         assertEquals("x*x", function2.getFunctionString());
     }
 
     @Test
+    // EFFECTS: test evaluations of function
     public void testEvaluateFunction() {
         double val1 = function1.evaluateFunction(1.1);
         assertEquals(2.1, val1);
@@ -46,6 +50,7 @@ public class FunctionTest {
     }
 
     @Test
+    // EFFECTS: testing converting evaluation into coordinate
     public void testGetCoord() {
         Coordinate coord1 = function1.getCoord(1.0);
         assertEquals(1, coord1.getCoordX());
@@ -57,7 +62,7 @@ public class FunctionTest {
 
 
     @Test
-    // Testing 40 points are correct
+    // EFFECTS: Testing 40 points are correct
     public void testGetCurveSimple() {
         Curve function1Curve = function1.getCurve(0.5, 0, 20);
         double i = 0;
@@ -69,7 +74,7 @@ public class FunctionTest {
     }
 
     @Test
-    // Testing 1500 points are correct
+    // EFFECTS: Testing 1500 points are correct
     public void testGetCurveComplex() {
         Curve curve = function2.getCurve(0.1, -100, 50);
         double i = -100;
@@ -83,6 +88,7 @@ public class FunctionTest {
     }
 
     @Test
+    // EFFECTS: test if integral is good
     public void testTakeDefiniteIntegral() {
         double result = function1.takeDefiniteIntegral(1, 0, 10);
         assertEquals(11 * 5, result);

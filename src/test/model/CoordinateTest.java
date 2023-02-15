@@ -4,12 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+// test class for Coordinate Class
 public class CoordinateTest {
     Coordinate c1;
     Coordinate c2;
 
     @Test
+    //EFFECTS: test each x y value make sense
     public void testCoordinate() {
         c1 = new Coordinate(3.1, -5.0);
         c2 = new Coordinate(-42, 0);

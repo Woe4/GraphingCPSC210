@@ -6,6 +6,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// test class for FunctionHistory Class
 public class FunctionHistoryTest {
     Function function;
     Function function2;
@@ -19,11 +20,13 @@ public class FunctionHistoryTest {
     }
 
     @Test
+    // EFFECTS: test constructor initialized to length == 0
     public void testFunctionHistory() {
         assertEquals(0, history.getLength());
     }
 
     @Test
+    // EFFECTS: test if function added correctly (twice)
     public void testAddFunction() {
         history.addFunction(function);
         assertEquals(1, history.getLength());
@@ -34,6 +37,7 @@ public class FunctionHistoryTest {
     }
 
     @Test
+    // EFFECTS: test clear history makes size == 0
     public void testClearHistory() {
         history.addFunction(function);
         history.addFunction(function2);
@@ -42,6 +46,7 @@ public class FunctionHistoryTest {
     }
 
     @Test
+    // EFFECTS: test if we get a list of strings correct
     public void testGetFunctionStrings() {
         history.addFunction(function2);
         history.addFunction(function);

@@ -50,7 +50,7 @@ public class TerminalUI {
 
     }
 
-
+    // MODIFIES: this
     // EFFECTS: draws axes and curve, gets definite integral
     public void start() throws IOException {
         try {
@@ -72,6 +72,7 @@ public class TerminalUI {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: gets another function
     private void restart() throws IOException {
         terminal.clearScreen();
@@ -101,7 +102,8 @@ public class TerminalUI {
         }
     }
 
-    //
+    // MODIFIES: this
+    // EFFECTS: draws the curve of function
     private void drawCurve() throws ScriptException, IOException {
         double columnStep = numColumns / domain;
         double rowStep = numRows / range;
@@ -123,7 +125,8 @@ public class TerminalUI {
         }
     }
 
-    // Gets user input for function, range and domain
+    // MODIFIES: this
+    // EFFEcTS: Gets user input for function, range and domain
     public void getUserInputs() throws IOException {
         function = new Function(getUserFunction());
         domain = getUserDomain();
@@ -132,6 +135,7 @@ public class TerminalUI {
         start();
     }
 
+    // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a String
     private String getUserFunction() {
         Scanner sc = new Scanner(System.in);
@@ -139,6 +143,7 @@ public class TerminalUI {
         return sc.nextLine();
     }
 
+    // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a double
     private double getUserRange() {
         Scanner sc = new Scanner(System.in);
@@ -146,6 +151,7 @@ public class TerminalUI {
         return Double.parseDouble(sc.nextLine());
     }
 
+    // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a double
     private double getUserDomain() {
         Scanner sc = new Scanner(System.in);
@@ -153,7 +159,7 @@ public class TerminalUI {
         return Double.parseDouble(sc.nextLine());
     }
 
-
+    // MODIFIES: this
     // EFFECTS: Draws the y axis and x axis in middle of terminal
     private void drawAxes() throws IOException {
         terminal.setForegroundColor(TextColor.ANSI.WHITE);

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+// test class for Curve Class
 class CurveTest {
 
     Curve aCurve;
@@ -16,11 +17,13 @@ class CurveTest {
     }
 
     @Test
+    // EFFECTS: test that list is initialized with size == 0
     public void testCurve() {
         assertEquals(0, aCurve.getCoordinateList().size());
     }
 
     @Test
+    // EFFECTS: test add coordinate
     public void testAddCoordinateOnce() {
         aCurve.addCoordinate(new Coordinate(-1.1, 1));
         assertEquals(-1.1, aCurve.getCoordinate(0).getCoordX());
@@ -31,6 +34,7 @@ class CurveTest {
     }
 
     @Test
+    // EFFECTS: test if added coordinates stay
     public void testAddCoordinateMultipleTimes() {
         aCurve.addCoordinate(new Coordinate(-1.1, 1));
         aCurve.addCoordinate(new Coordinate(14, -3.7));
@@ -39,6 +43,7 @@ class CurveTest {
     }
 
     @Test
+    // EFFECTS: test length of list
     public void testGetNumberOfCoordinates() {
         assertEquals(0, aCurve.getNumberOfCoordinate());
         aCurve.addCoordinate(new Coordinate(-1.1, 1));
