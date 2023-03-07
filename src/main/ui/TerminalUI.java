@@ -9,6 +9,8 @@ import model.Coordinate;
 import model.Curve;
 import model.Function;
 import model.FunctionHistory;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.script.ScriptException;
 import java.io.IOException;
@@ -20,6 +22,8 @@ import java.util.Scanner;
 
 public class TerminalUI {
 
+    private static final String JSON_STORE = "./data/saveFile.json";
+
     private DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
 
     private Terminal terminal = null;
@@ -29,14 +33,19 @@ public class TerminalUI {
     private int numColumns;
     private int numRows;
 
+    private Scanner sc;
     private Function function;
     private double domain;
     private double range;
 
-    private FunctionHistory history = new FunctionHistory();
+    private boolean endApp;
+
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
+
+    private FunctionHistory history;
 
     // EFFECTS: gets terminal setup; this includes:
-    //          getting the user function
     //          getting terminal sizes and cursor positions
     //          getting the domain and range to graph in
     public TerminalUI() throws IOException {
@@ -48,10 +57,80 @@ public class TerminalUI {
         numColumns = terminalSize.getColumns();
         numRows = terminalSize.getRows();
 
+        sc = new Scanner(System.in);
+
+        endApp = false;
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
+
+        domain = 0;
+        range = 0;
+        function = new Function("");
+        history = new FunctionHistory();
     }
 
     // MODIFIES: this
-    // EFFECTS: draws axes and curve, gets definite integral
+    // EFFECTS: Displays menu and asks for input from user
+    public void displayMenu() throws IOException {
+        try {
+            while (!endApp) {
+                terminal.clearScreen();
+                System.out.println("What would you like to do? \n"
+                        + "a) Input a function \n"
+                        + "b) Save function and history \n"
+                        + "c) Load function and history \n"
+                        + "d) Exit App");
+                menu(sc.nextLine());
+            }
+        } finally {
+            terminal.close();
+        }
+
+    }
+
+    // REQUIRES: 1 <= int <= 4
+    // MODIFIES: this
+    // EFFECTS: Decides what to function to do depending on input
+    private void menu(String nextChoice) throws IOException {
+        if (nextChoice.equals("a")) {
+            getUserInputs();
+            start();
+        } else if (nextChoice.equals("b")) {
+            try {
+                saveToSaveFile();
+            } catch (IOException e) {
+                System.out.println("Invalid file: " + JSON_STORE);
+            }
+        } else if (nextChoice.equals("c")) {
+            try {
+                loadFromSaveFile();
+            } catch (IOException e) {
+                System.out.println("Invalid file: " + JSON_STORE);
+            }
+        } else {
+            System.out.println("Closing App \n" + "BYEEEE");
+            endApp = true;
+        }
+    }
+
+    private void loadFromSaveFile() throws IOException {
+        function = jsonReader.readFunction();
+        history = jsonReader.readHistory();
+        domain = jsonReader.readDomain();
+        range = jsonReader.readRange();
+        System.out.println("Loaded from " + JSON_STORE);
+        start();
+    }
+
+    private void saveToSaveFile() throws IOException {
+        jsonWriter.open();
+        jsonWriter.write(history, function, domain, range);
+        jsonWriter.close();
+        System.out.println("Saved to " + JSON_STORE);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: draws axes and curve, and optionally gets definite integral
     public void start() throws IOException {
         try {
             drawAxes();
@@ -60,32 +139,16 @@ public class TerminalUI {
             printHistory();
             getDefiniteIntegral();
 
-            restart();
-
-        } catch (IOException | ScriptException e) {
+        } catch (ScriptException e) {
             System.out.println("Invalid input");
 
-            getUserInputs();
-        } finally {
-            terminal.close();
-        }
-
-    }
-
-    // MODIFIES: this
-    // EFFECTS: gets another function
-    private void restart() throws IOException {
-        terminal.clearScreen();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("New function? (y/n)");
-        if (Objects.equals(sc.nextLine(), "y")) {
             getUserInputs();
         }
     }
 
     // EFFECTS: prints all functions in history
     private void printHistory() {
-        System.out.println("History: \n");
+        System.out.println("History: ");
         for (String functionString : history.getFunctionStrings()) {
             System.out.println(functionString);
         }
@@ -93,7 +156,6 @@ public class TerminalUI {
 
     // EFFECTS: Reads console input and returns integral value if asked for
     private void getDefiniteIntegral() throws ScriptException {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Find definite integral? (y/n)");
         if (Objects.equals(sc.nextLine(), "y")) {
             System.out.println("Accuracy: ");
@@ -114,7 +176,7 @@ public class TerminalUI {
 
         for (int i = 0; i < curve.getNumberOfCoordinate(); i++) {
             if (Math.abs(curve.getCoordinate(i).getCoordY()) < (range / 2)) {
-                int row =  (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
+                int row = (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
                 int column = (int) Math.round(i * columnStep * columnStep);
 
                 terminal.setCursorPosition(startPosition.withRelativeColumn(column).withRelativeRow(row));
@@ -127,18 +189,17 @@ public class TerminalUI {
 
     // MODIFIES: this
     // EFFEcTS: Gets user input for function, range and domain
-    public void getUserInputs() throws IOException {
-        function = new Function(getUserFunction());
+    public void getUserInputs() {
+        String inputFunction = getUserFunction();
+        function = new Function(inputFunction);
         domain = getUserDomain();
         range = getUserRange();
         history.addFunction(function);
-        start();
     }
 
     // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a String
     private String getUserFunction() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter function: y = ");
         return sc.nextLine();
     }
@@ -146,7 +207,6 @@ public class TerminalUI {
     // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a double
     private double getUserRange() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter range length:");
         return Double.parseDouble(sc.nextLine());
     }
@@ -154,7 +214,6 @@ public class TerminalUI {
     // MODIFIES: this
     // EFFECTS: Reads console input and returns that value as a double
     private double getUserDomain() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter domain length:");
         return Double.parseDouble(sc.nextLine());
     }

@@ -12,7 +12,7 @@ public class Main {
 
         try {
             TerminalUI terminalHandler = new TerminalUI();
-            terminalHandler.getUserInputs();
+            terminalHandler.displayMenu();
 
         } catch (Exception e) {
             System.out.println("L");
