@@ -12,12 +12,12 @@ public class Function {
 
     private final String functionString;
 
-    // EFFECTS:
+    // EFFECTS: creates a new function with given string
     public Function(String function) {
         this.functionString = function;
     }
 
-    // EFFECTS: returns function evaluated at given x value
+    // EFFECTS: returns function evaluated at given x value, if unevaluable, returns -1
     public double evaluateFunction(double x) {
         try {
             ScriptEngineManager mgr = new ScriptEngineManager();

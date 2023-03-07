@@ -10,6 +10,7 @@ public class Curve {
 
     ArrayList<Coordinate> coordinateList;
 
+    // EFFECTS: creates a new, empty, list of coordinates
     public Curve() {
         coordinateList = new ArrayList<Coordinate>();
     }

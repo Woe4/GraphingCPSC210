@@ -1,0 +1,9 @@
+{
+  "history": [
+    "x*x",
+    "10*x+7"
+  ],
+  "function": "-x",
+  "domain": 80,
+  "range": 24
+}

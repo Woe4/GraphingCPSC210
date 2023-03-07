@@ -28,8 +28,7 @@ As a user, I want to be able to
 of the function (adding points to a curve)
 - change the scope of the displayed graph
 - integrate with different accuracies
-- keep a history of functions (which can be
-graphed at the same time)
+- keep a history of functions 
 - change the accuracy of the graph
 - optionally save my history of functions
 - optionally load my history of functions
