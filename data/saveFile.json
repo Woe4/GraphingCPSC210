@@ -1,10 +1,11 @@
 {
     "domain": 100,
-    "function": "x+20",
+    "function": "-2*x",
     "range": 100,
     "history": [
         "3*x",
         "0.2*x+2",
-        "x+20"
+        "x+20",
+        "-2*x"
     ]
 }

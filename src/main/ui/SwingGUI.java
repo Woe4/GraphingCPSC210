@@ -48,7 +48,7 @@ public class SwingGUI {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("My Graphing Project");
-        frame.setVisible(true);
+
 
         setupMenuPanel();
 
@@ -60,8 +60,9 @@ public class SwingGUI {
         frame.add(graphPanel, BorderLayout.WEST);
         frame.add(inputPanel, BorderLayout.CENTER);
         frame.add(menuPanel, BorderLayout.EAST);
-        frame.pack();
 
+        frame.pack();
+        frame.setVisible(true);
     }
 
     // MODIFIES: this
@@ -94,9 +95,10 @@ public class SwingGUI {
             String text = textField.getText();
             textArea.append(text + "\n");
             textField.selectAll();
-            function = new Function(text);
             history.addFunction(function);
 
+            function = new Function(text);
+            graphPanel.setFunction(function);
             graphPanel.repaint();
         });
         textField.selectAll();
@@ -176,6 +178,7 @@ public class SwingGUI {
         history = jsonReader.readHistory();
         domain = jsonReader.readDomain();
         range = jsonReader.readRange();
+        textArea.setText(null);
         for (String s : history.getFunctionStrings()) {
             textArea.append(s + "\n");
         }

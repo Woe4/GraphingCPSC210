@@ -11,6 +11,7 @@ import java.awt.*;
 public class GraphPanel extends JPanel {
 
     private static final int DEFAULT_DOMAIN = 20;
+    private static final int PREFERRED_SIZE = 800;
     private int numColumns;
     private int numRows;
     private double domain;
@@ -21,11 +22,11 @@ public class GraphPanel extends JPanel {
 
     // EFFECTS: creates an empty graph panel of size 800x800 pixels
     public GraphPanel() {
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(PREFERRED_SIZE, PREFERRED_SIZE));
         setBackground(Color.WHITE);
 
-        numColumns = 800;
-        numRows = 800;
+        numColumns = PREFERRED_SIZE;
+        numRows = PREFERRED_SIZE;
 
         domain = DEFAULT_DOMAIN;
         range = DEFAULT_DOMAIN;
@@ -39,35 +40,41 @@ public class GraphPanel extends JPanel {
         super.paintComponent(g);
         g.setColor(drawColour);
         drawAxes(g);
-        drawCurve(g);
+        if (function != null) {
+            drawCurve(g);
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: draws the curve
     private void drawCurve(Graphics g) {
-//        double columnStep = numColumns / domain;
-//        double rowStep = numRows / range;
-//
-//        Curve curve = function.getCurve(columnStep, -1 * domain / 2, domain / 2);
-//
-//        for (int i = 0; i < curve.getNumberOfCoordinate() - 1; i++) {
-//            if (Math.abs(curve.getCoordinate(i).getCoordY()) < (range / 2)
-//                    && Math.abs(curve.getCoordinate(i + 1).getCoordY()) < (range / 2)) {
-//                int row1 = (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
-//                int column1 = (int) Math.round(i * columnStep * columnStep);
-//                int row2 = (int) Math.round((-1 * curve.getCoordinate(i + 1).getCoordY()) * rowStep + numRows / 2);
-//                int column2 = (int) Math.round((i + 1) * columnStep * columnStep);
-//
-//                g.drawLine(column1, row1, row2, column2);
-//            }
-//
-//        }
+        g.setColor(Color.PINK);
+        double columnStep = numColumns / domain;
+        double rowStep = numRows / range;
+
+        Curve curve = function.getCurve(columnStep, -1 * domain / 2, domain / 2);
+
+        for (int i = 0; i < curve.getNumberOfCoordinate() - 1; i++) {
+            g.drawLine(0, 10, 20, 20);
+            if (Math.abs(curve.getCoordinate(i).getCoordY()) < (range / 2)
+                    && Math.abs(curve.getCoordinate(i + 1).getCoordY()) < (range / 2)) {
+                int row1 = (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
+                int column1 = (int) Math.round(i * columnStep * columnStep);
+                int row2 = (int) Math.round((-1 * curve.getCoordinate(i + 1).getCoordY()) * rowStep + numRows / 2);
+                int column2 = (int) Math.round((i + 1) * columnStep * columnStep);
+
+                g.drawLine(column1, row1, row2, column2);
+            }
+
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: draws the axes based on domain and range
     private void drawAxes(Graphics g) {
-        // TODO
+        g.setColor(Color.GRAY);
+        g.fillRect(0, PREFERRED_SIZE / 2, PREFERRED_SIZE, 2);
+        g.fillRect(PREFERRED_SIZE / 2, 0, 2, PREFERRED_SIZE);
     }
 
     // MODIFIES: this
