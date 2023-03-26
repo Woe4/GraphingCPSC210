@@ -33,9 +33,15 @@ of the function (adding points to a curve)
 - optionally save my history of functions
 - optionally load my history of functions
 
-**Ambitious ideas**
+## Instructions for Grader
 
-As a user, I want to be able to
-
-- graph with a changing variable
-- visualize 3-dimensional graphs + solids
+- To start inputting, you can input an equation
+as a function of x in the middle panel
+- Clicking enter will draw the graph on the left panel
+- Clicking enter will also add the input in the history
+in the middle top panel that is a list of previous inputs
+  (add X's)
+- The "Clear History" button will clear the history by 
+deleting all previous inputs (delete X's)
+- Saving can be done with the save button on the right
+- Loading can be done with the load button on the right
