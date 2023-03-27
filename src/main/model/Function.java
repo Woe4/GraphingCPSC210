@@ -57,7 +57,7 @@ public class Function {
     // EFFECTS: returns area under curve approximated as right Riemann Sum
     public double takeDefiniteIntegral(double accuracy, double start, double end) {
         double result = 0;
-        while (end >= start) {
+        while (start <= end) {
             result += evaluateFunction(start) * accuracy;
             start += accuracy;
         }

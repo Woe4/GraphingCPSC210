@@ -20,15 +20,13 @@ public class SwingGUI implements WindowListener {
 
     private static final String JSON_STORE = "./data/saveFile.json";
 
-
     private Function function;
     private double domain;
     private double range;
+    private FunctionHistory history;
 
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
-
-    private FunctionHistory history;
 
     private JFrame frame;
     private JPanel inputPanel;
@@ -38,6 +36,7 @@ public class SwingGUI implements WindowListener {
     private JTextField textField;
     private JTextArea textArea;
 
+    private JButton definiteIntegralButton;
     private JButton saveButton;
     private JButton loadButton;
     private JButton clearHistoryButton;
@@ -78,10 +77,11 @@ public class SwingGUI implements WindowListener {
     // EFFECTS: sets up the menu panel (without adding to frame) including buttons
     private void setupMenuPanel() {
         menuPanel = new JPanel();
-        menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 10));
         menuPanel.setLayout(new GridLayout(0, 1));
         menuPanel.setPreferredSize(new Dimension(200, 800));
 
+        setupIntegrateButton();
         setupSaveButton();
         setupLoadButton();
         setupClearHistoryButton();
@@ -98,7 +98,7 @@ public class SwingGUI implements WindowListener {
     // EFFECTS: sets up input panel with text field and text area
     private void setupInputPanel() {
         inputPanel = new JPanel();
-        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 5));
         inputPanel.setLayout(new GridLayout(0, 1));
         inputPanel.setPreferredSize(new Dimension(200, 800));
 
@@ -110,6 +110,8 @@ public class SwingGUI implements WindowListener {
 
             function = new Function(text);
             history.addFunction(function);
+
+            definiteIntegralButton.setEnabled(true);
 
             graphPanel.setFunction(function);
             graphPanel.repaint();
@@ -123,6 +125,18 @@ public class SwingGUI implements WindowListener {
 
         inputPanel.add(textArea);
         inputPanel.add(textField);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets up integral button with action listener
+    private void setupIntegrateButton() {
+        definiteIntegralButton = new JButton("Take Integral");
+        definiteIntegralButton.addActionListener(e -> {
+            double result = function.takeDefiniteIntegral(domain / 800.0, -1 * domain / 2, domain / 2);
+            textArea.append("Definite Integral of f(x) = " + function.getFunctionString() + " is " + result + "\n");
+        });
+        definiteIntegralButton.setEnabled(false);
+        menuPanel.add(definiteIntegralButton);
     }
 
     // MODIFIES: this
@@ -161,6 +175,8 @@ public class SwingGUI implements WindowListener {
             history.clearHistory();
             textArea.setText(null);
             textField.setText(null);
+
+            definiteIntegralButton.setEnabled(false);
         });
         menuPanel.add(clearHistoryButton);
     }
@@ -197,6 +213,7 @@ public class SwingGUI implements WindowListener {
         }
         graphPanel.setFunction(function);
         textArea.append("Loaded from " + JSON_STORE + "\n");
+        definiteIntegralButton.setEnabled(true);
         drawGraph();
     }
 
@@ -211,9 +228,8 @@ public class SwingGUI implements WindowListener {
 
     // EFFECTS: Prints to console EventLog instance
     public void printEventLog() {
-        Iterator<model.Event> it = EventLog.getInstance().iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
+        for (model.Event event : EventLog.getInstance()) {
+            System.out.println(event);
         }
     }
 
@@ -225,6 +241,7 @@ public class SwingGUI implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
         printEventLog();
+        frame.dispose();
         System.exit(0);
     }
 

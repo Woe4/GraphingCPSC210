@@ -47,5 +47,6 @@ in the middle top panel that is a list of previous inputs
 deleting all previous inputs (second required action)
 - Saving can be done with the save button on the right
 - Loading can be done with the load button on the right
-
+- The definite integral will take an approximate integral
+as a right riemann sum (which will be non-exact)
 EventLog and Event classes w/ tests come from AlarmController as required

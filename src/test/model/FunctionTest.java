@@ -91,6 +91,6 @@ public class FunctionTest {
     // EFFECTS: test if integral is good
     public void testTakeDefiniteIntegral() {
         double result = function1.takeDefiniteIntegral(1, 0, 10);
-        assertEquals(11 * 5, result);
+        assertEquals(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11, result);
     }
 }
