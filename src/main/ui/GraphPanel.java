@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
+// Represents a panel that displays the graph of the function
 public class GraphPanel extends JPanel {
 
     private static final int DEFAULT_DOMAIN = 20;
@@ -18,8 +19,6 @@ public class GraphPanel extends JPanel {
     private double domain;
     private double range;
     private Function function;
-
-    private final AffineTransform affineTransform;
 
     private static final Color drawColour = Color.GREEN;
 
@@ -34,10 +33,6 @@ public class GraphPanel extends JPanel {
         domain = DEFAULT_DOMAIN;
         range = DEFAULT_DOMAIN;
         function = null;
-
-        affineTransform = new AffineTransform();
-        affineTransform.translate(PREFERRED_SIZE / 2.0, PREFERRED_SIZE / 2.0);
-        affineTransform.scale(domain / numColumns, -1 * range / numRows);
     }
 
     // MODIFIES: this
@@ -87,6 +82,7 @@ public class GraphPanel extends JPanel {
         g.setColor(Color.GRAY);
         g.fillRect(0, PREFERRED_SIZE / 2, PREFERRED_SIZE, 2);
         g.fillRect(PREFERRED_SIZE / 2, 0, 2, PREFERRED_SIZE);
+        g.drawString("0", PREFERRED_SIZE / 2 + 2, PREFERRED_SIZE / 2);
     }
 
     // MODIFIES: this

@@ -71,7 +71,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: sets up the menu panel (without adding to frame) including buttons
     private void setupMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -88,7 +88,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: sets up input panel with text field and text area
     private void setupInputPanel() {
         inputPanel = new JPanel();
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -119,7 +119,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: sets up save button with action listener
     private void setupSaveButton() {
         saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
@@ -133,7 +133,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: sets up load button with action listener
     private void setupLoadButton() {
         loadButton = new JButton("Load");
         loadButton.addActionListener(e -> {
@@ -147,7 +147,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: sets up clear history button with action listener
     private void setupClearHistoryButton() {
         clearHistoryButton = new JButton("Clear History");
         clearHistoryButton.addActionListener(e -> {
@@ -159,7 +159,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: asks the graph panel to draw the graph
     private void drawGraph() {
         try {
             graphPanel.repaint();
@@ -169,7 +169,7 @@ public class SwingGUI {
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: saves history, function, domain and range to file in JSON_STORE
     private void saveToSaveFile() throws IOException {
         jsonWriter.open();
         jsonWriter.write(history, function, domain, range);
