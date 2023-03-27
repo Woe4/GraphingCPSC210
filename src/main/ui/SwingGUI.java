@@ -49,7 +49,6 @@ public class SwingGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("My Graphing Project");
 
-
         setupMenuPanel();
 
         setupInputPanel();
@@ -182,8 +181,9 @@ public class SwingGUI {
         for (String s : history.getFunctionStrings()) {
             textArea.append(s + "\n");
         }
-        drawGraph();
+        graphPanel.setFunction(function);
         textArea.append("Loaded from " + JSON_STORE + "\n");
+        drawGraph();
     }
 
 }

@@ -7,6 +7,7 @@ import model.Function;
 import javax.script.ScriptException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class GraphPanel extends JPanel {
 
@@ -17,6 +18,8 @@ public class GraphPanel extends JPanel {
     private double domain;
     private double range;
     private Function function;
+
+    private final AffineTransform affineTransform;
 
     private static final Color drawColour = Color.GREEN;
 
@@ -31,6 +34,10 @@ public class GraphPanel extends JPanel {
         domain = DEFAULT_DOMAIN;
         range = DEFAULT_DOMAIN;
         function = null;
+
+        affineTransform = new AffineTransform();
+        affineTransform.translate(PREFERRED_SIZE / 2.0, PREFERRED_SIZE / 2.0);
+        affineTransform.scale(domain / numColumns, -1 * range / numRows);
     }
 
     // MODIFIES: this
@@ -49,21 +56,26 @@ public class GraphPanel extends JPanel {
     // EFFECTS: draws the curve
     private void drawCurve(Graphics g) {
         g.setColor(Color.PINK);
-        double columnStep = numColumns / domain;
-        double rowStep = numRows / range;
+        double columnStep = domain / numColumns;
+        double rowStep = range / numRows;
 
         Curve curve = function.getCurve(columnStep, -1 * domain / 2, domain / 2);
 
-        for (int i = 0; i < curve.getNumberOfCoordinate() - 1; i++) {
-            g.drawLine(0, 10, 20, 20);
-            if (Math.abs(curve.getCoordinate(i).getCoordY()) < (range / 2)
-                    && Math.abs(curve.getCoordinate(i + 1).getCoordY()) < (range / 2)) {
-                int row1 = (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) * rowStep + numRows / 2);
-                int column1 = (int) Math.round(i * columnStep * columnStep);
-                int row2 = (int) Math.round((-1 * curve.getCoordinate(i + 1).getCoordY()) * rowStep + numRows / 2);
-                int column2 = (int) Math.round((i + 1) * columnStep * columnStep);
+        int row1;
+        int column1;
+        int row2;
+        int column2;
 
-                g.drawLine(column1, row1, row2, column2);
+        for (int i = 0; i < curve.getNumberOfCoordinate() - 1; i++) {
+            if (Math.abs(curve.getCoordinate(i).getCoordY()) <= (range / 2)
+                    && Math.abs(curve.getCoordinate(i + 1).getCoordY()) <= (range / 2)) {
+                row1 = (int) Math.round((-1 * curve.getCoordinate(i).getCoordY()) / rowStep + numRows / 2.0);
+                column1 = i;
+                row2 = (int) Math.round((-1 * curve.getCoordinate(i + 1).getCoordY()) / rowStep + numRows / 2.0);
+                column2 = i + 1;
+
+
+                g.drawLine(column1, row1, column2, row2);
             }
 
         }
