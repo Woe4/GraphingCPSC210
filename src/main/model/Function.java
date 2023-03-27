@@ -3,6 +3,7 @@ package model;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import java.lang.Math.*;
 
 
 // This is the class that deals with a function (like y = f(x) kind of function).

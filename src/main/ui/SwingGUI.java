@@ -133,7 +133,7 @@ public class SwingGUI implements WindowListener {
         definiteIntegralButton = new JButton("Take Integral");
         definiteIntegralButton.addActionListener(e -> {
             double result = function.takeDefiniteIntegral(domain / 800.0, -1 * domain / 2, domain / 2);
-            textArea.append("Definite Integral of f(x) = " + function.getFunctionString() + " is " + result + "\n");
+            textArea.append("Definite Integral of \n f(x) = " + function.getFunctionString() + " is \n " + result + "\n");
         });
         definiteIntegralButton.setEnabled(false);
         menuPanel.add(definiteIntegralButton);
