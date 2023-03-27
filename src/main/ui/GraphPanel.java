@@ -107,6 +107,15 @@ public class GraphPanel extends JPanel {
         function = f;
     }
 
+    public double getDomain() {
+        return domain;
+    }
+
+    public double getRange() {
+        return range;
+    }
+
+
 
 
 

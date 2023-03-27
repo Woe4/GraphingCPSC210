@@ -35,9 +35,11 @@ of the function (adding points to a curve)
 
 ## Instructions for Grader
 
+- To start the program, run MainGUI (not Main)
 - To start inputting, you can input an equation
 as a function of x in the middle panel
 - Clicking enter will draw the graph on the left panel
+  (this may take some time to load so please be patient)
 - Clicking enter will also add the input in the history
 in the middle top panel that is a list of previous inputs
   (add X's)

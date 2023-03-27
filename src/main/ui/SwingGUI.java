@@ -55,6 +55,8 @@ public class SwingGUI {
 
         graphPanel = new GraphPanel();
         graphPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        domain = graphPanel.getDomain();
+        range = graphPanel.getRange();
 
         frame.add(graphPanel, BorderLayout.WEST);
         frame.add(inputPanel, BorderLayout.CENTER);
@@ -62,6 +64,10 @@ public class SwingGUI {
 
         frame.pack();
         frame.setVisible(true);
+
+        textField.setText("Enter Function Here");
+        textField.requestFocus();
+        textField.selectAll();
     }
 
     // MODIFIES: this
@@ -101,7 +107,7 @@ public class SwingGUI {
             graphPanel.setFunction(function);
             graphPanel.repaint();
         });
-        textField.selectAll();
+
         textField.setPreferredSize(new Dimension(200, 100));
 
         textArea = new JTextArea(40, 20);

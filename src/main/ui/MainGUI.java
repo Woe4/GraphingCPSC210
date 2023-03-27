@@ -5,15 +5,7 @@ public class MainGUI {
     // definite integral along with ability to save and load
     public static void main(String[] args) {
         // create and start
-
-        try {
-            SwingGUI gui = new SwingGUI();
-
-        } catch (Exception e) {
-            System.out.println("L");
-            e.printStackTrace();
-        }
-
+        SwingGUI gui = new SwingGUI();
 
     }
 }
