@@ -94,9 +94,10 @@ public class SwingGUI {
             String text = textField.getText();
             textArea.append(text + "\n");
             textField.selectAll();
-            history.addFunction(function);
 
             function = new Function(text);
+            history.addFunction(function);
+
             graphPanel.setFunction(function);
             graphPanel.repaint();
         });
@@ -119,7 +120,7 @@ public class SwingGUI {
             try {
                 saveToSaveFile();
             } catch (IOException exception) {
-                textArea.append("Save failed: " + JSON_STORE);
+                textArea.append("Save failed: " + JSON_STORE + "\n");
             }
         });
         menuPanel.add(saveButton);
