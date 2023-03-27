@@ -2,10 +2,10 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Calendar;
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EventTest {
     private Event e1;
@@ -35,5 +35,19 @@ public class EventTest {
     public void testToString() {
         assertEquals(d1.toString() + "\n" + "Added new function: x", e1.toString());
         assertEquals(d2.toString() + "\n" + "Cleared history", e2.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        assertFalse(e1.equals(null));
+        int anInt = 3;
+        assertFalse(e1.equals(anInt));
+        assertTrue(e1.equals(e1));
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(13 * e1.getDate().hashCode() + e1.getDescription().hashCode(), e1.hashCode());
+        assertEquals(e1.hashCode(), e1.hashCode());
     }
 }
