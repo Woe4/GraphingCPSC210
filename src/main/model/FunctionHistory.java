@@ -16,12 +16,14 @@ public class FunctionHistory {
     // EFFECTS: adds function to the end of the list
     public void addFunction(Function function) {
         history.add(function);
+        EventLog.getInstance().logEvent(new Event("Added new function: " + function.getFunctionString()));
     }
 
     // MODIFIES: this
     // EFFECTS: clears all history (deletes functions from list)
     public void clearHistory() {
         history = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("Cleared history"));
     }
 
     // EFFECTS: returns list of functions as strings

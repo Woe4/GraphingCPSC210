@@ -2,15 +2,19 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // test class for FunctionHistory Class
 public class FunctionHistoryTest {
-    Function function;
-    Function function2;
-    FunctionHistory history;
+    private Function function;
+    private Function function2;
+    private FunctionHistory history;
+    private Event e;
+    private Date d;
 
     @BeforeEach
     public void setup() {
@@ -31,6 +35,7 @@ public class FunctionHistoryTest {
         history.addFunction(function);
         assertEquals(1, history.getLength());
         assertEquals("x", history.getFunction(0).getFunctionString());
+
         history.addFunction(function2);
         assertEquals(2, history.getLength());
         assertEquals("x*x", history.getFunction(1).getFunctionString());

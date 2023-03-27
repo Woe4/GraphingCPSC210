@@ -234,4 +234,21 @@ public class TerminalUI {
             terminal.flush();
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: create and start UI
+    public static void main(String[] args) {
+
+
+        try {
+            TerminalUI terminalHandler = new TerminalUI();
+            terminalHandler.displayMenu();
+
+        } catch (Exception e) {
+            System.out.println("L");
+            e.printStackTrace();
+        }
+
+
+    }
 }

@@ -1,6 +1,7 @@
 package ui;
 
 
+import model.EventLog;
 import model.Function;
 import model.FunctionHistory;
 import persistence.JsonReader;
@@ -9,10 +10,13 @@ import persistence.JsonWriter;
 import javax.script.ScriptException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.util.Iterator;
 
 // Represents a graphical user interface for graphing including inputs and outputs
-public class SwingGUI {
+public class SwingGUI implements WindowListener {
 
     private static final String JSON_STORE = "./data/saveFile.json";
 
@@ -46,7 +50,7 @@ public class SwingGUI {
         history = new FunctionHistory();
 
         frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle("My Graphing Project");
 
         setupMenuPanel();
@@ -83,7 +87,10 @@ public class SwingGUI {
         setupClearHistoryButton();
 
         exitButton = new JButton("Exit");
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(e -> {
+            printEventLog();
+            System.exit(0);
+        });
         menuPanel.add(exitButton);
     }
 
@@ -193,4 +200,56 @@ public class SwingGUI {
         drawGraph();
     }
 
+    // MODIFIES: this
+    // EFFECTS: runs a graphical user interface based program that asks for a function, graphs it along with ability
+    // to save and load
+    public static void main(String[] args) {
+        // create and start
+        SwingGUI gui = new SwingGUI();
+
+    }
+
+    // EFFECTS: Prints to console EventLog instance
+    public void printEventLog() {
+        Iterator<model.Event> it = EventLog.getInstance().iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        printEventLog();
+        System.exit(0);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }
