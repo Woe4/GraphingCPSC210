@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-// Represents a graphical user interface for graphing
+// Represents a graphical user interface for graphing including inputs and outputs
 public class SwingGUI {
 
     private static final String JSON_STORE = "./data/saveFile.json";

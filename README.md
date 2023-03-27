@@ -42,8 +42,8 @@ as a function of x in the middle panel
   (this may take some time to load so please be patient)
 - Clicking enter will also add the input in the history
 in the middle top panel that is a list of previous inputs
-  (add X's)
+  (add X's, first required action)
 - The "Clear History" button will clear the history by 
-deleting all previous inputs (delete X's)
+deleting all previous inputs (second required action)
 - Saving can be done with the save button on the right
 - Loading can be done with the load button on the right
