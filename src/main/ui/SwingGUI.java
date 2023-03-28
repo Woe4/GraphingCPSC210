@@ -19,6 +19,7 @@ import java.util.Iterator;
 public class SwingGUI implements WindowListener {
 
     private static final String JSON_STORE = "./data/saveFile.json";
+    private static final Color BUTTON_COLOUR = new Color(133, 254, 255);
 
     private Function function;
     private double domain;
@@ -133,9 +134,11 @@ public class SwingGUI implements WindowListener {
         definiteIntegralButton = new JButton("Take Integral");
         definiteIntegralButton.addActionListener(e -> {
             double result = function.takeDefiniteIntegral(domain / 800.0, -1 * domain / 2, domain / 2);
-            textArea.append("Definite Integral of \n f(x) = " + function.getFunctionString() + " is \n " + result + "\n");
+            textArea.append("Definite Integral of \n f(x) = " + function.getFunctionString()
+                    + " is \n " + result + "\n");
         });
         definiteIntegralButton.setEnabled(false);
+        //definiteIntegralButton.setBackground(BUTTON_COLOUR);
         menuPanel.add(definiteIntegralButton);
     }
 
@@ -150,6 +153,7 @@ public class SwingGUI implements WindowListener {
                 textArea.append("Save failed: " + JSON_STORE + "\n");
             }
         });
+        //saveButton.setBackground(BUTTON_COLOUR);
         menuPanel.add(saveButton);
     }
 
@@ -164,6 +168,7 @@ public class SwingGUI implements WindowListener {
                 textArea.append("Load failed: " + JSON_STORE);
             }
         });
+        //loadButton.setBackground(BUTTON_COLOUR);
         menuPanel.add(loadButton);
     }
 
@@ -178,6 +183,7 @@ public class SwingGUI implements WindowListener {
 
             definiteIntegralButton.setEnabled(false);
         });
+        //clearHistoryButton.setBackground(BUTTON_COLOUR);
         menuPanel.add(clearHistoryButton);
     }
 
@@ -233,11 +239,14 @@ public class SwingGUI implements WindowListener {
         }
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowOpened(WindowEvent e) {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: print event log before closing
     @Override
     public void windowClosing(WindowEvent e) {
         printEventLog();
@@ -245,26 +254,31 @@ public class SwingGUI implements WindowListener {
         System.exit(0);
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowClosed(WindowEvent e) {
 
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowIconified(WindowEvent e) {
 
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowDeiconified(WindowEvent e) {
 
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowActivated(WindowEvent e) {
 
     }
 
+    // EFFECTS: nothing
     @Override
     public void windowDeactivated(WindowEvent e) {
 
