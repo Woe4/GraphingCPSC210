@@ -69,7 +69,6 @@ public class GraphPanel extends JPanel {
                 row2 = (int) Math.round((-1 * curve.getCoordinate(i + 1).getCoordY()) / rowStep + numRows / 2.0);
                 column2 = i + 1;
 
-
                 g.drawLine(column1, row1, column2, row2);
             }
 
