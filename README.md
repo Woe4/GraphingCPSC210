@@ -35,7 +35,7 @@ of the function (adding points to a curve)
 
 ## Instructions for Grader
 
-- To start the program, run MainGUI (not Main)
+- To start the program, run SwingGUI
 - To start inputting, you can input an equation
 as a function of x in the middle panel (you should enter
 this function in java terms so that sinx would be 

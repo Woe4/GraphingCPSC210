@@ -1,10 +1,11 @@
 {
     "domain": 20,
-    "function": "Math.log(x)",
+    "function": "Math.sin(x)",
     "range": 20,
     "history": [
         "Math.tan(x)",
         "Math.pow(x, 2)",
-        "Math.log(x)"
+        "Math.log(x)",
+        "Math.sin(x)"
     ]
 }
