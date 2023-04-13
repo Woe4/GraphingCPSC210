@@ -3,9 +3,9 @@
 I am planning to create **graphing** software.
 This software could take in functions in terms of x 
 or theta and this could be graphed in cartesian 
-coordinates or polar coordinates (kind of like desmos).
+coordinates or polar coordinates.
 
-This program could be used by math/eng/physics people
+This program could be used by mathematicians/engineers/physicists
 who want to graph functions and would like some more
 visualization of integrals.
 
@@ -13,11 +13,7 @@ This project is interesting to me because I'm looking
 into physics and math and how they could be integrated
 with computer science. Computer
 science is an extremely powerful tool and can
-be helpful in working with abstract concepts. 
-
-
-
-
+be helpful in working with abstract concepts.
 
 
 ## User Stories
@@ -35,25 +31,35 @@ of the function (adding points to a curve)
 
 ## Instructions for Grader
 
-- To start the program, run SwingGUI
+- To start the program, run SwingGUI.
 - To start inputting, you can input an equation
-as a function of x in the middle panel (you should enter
+as a function of x in the middle panel. (You should enter
 this function in java terms so that sinx would be 
-Math.sin(x) and x^2 would be x * x)
+Math.sin(x) and x^2 would be x * x).
 - Clicking enter will draw the graph on the left panel
-  (this may take some time to load so please be patient)
-- Clicking enter will also add the input in the history
+  (this may take some time to load so please be patient).
+- Clicking enter will also add the function into the history
 in the middle top panel that is a list of previous inputs
-  (add X's, first required action)
+  (add X's, first required action).
 - The "Clear History" button will clear the history by 
-deleting all previous inputs (second required action)
+deleting all previous inputs (second required action).
 - Saving can be done with the save button on the right
 - Loading can be done with the load button on the right
 - The definite integral will take an approximate integral
-as a right riemann sum (which will be non-exact)
-- 
+as a right riemann sum (which will be non-exact).
+
 EventLog and Event classes w/ tests come from AlarmController as required
 
+
+## Phase 4: Task 2
+Wed Apr 12 19:55:37 PDT 2023
+Added new function: Math.tan(x)
+Wed Apr 12 19:55:37 PDT 2023
+Added new function: Math.pow(x, 2)
+Wed Apr 12 19:55:37 PDT 2023
+Added new function: Math.log(x)
+Wed Apr 12 19:55:37 PDT 2023
+Added new function: Math.sin(x)
 
 ## Phase 4: Task 3
 
