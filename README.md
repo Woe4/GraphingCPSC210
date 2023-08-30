@@ -3,7 +3,7 @@
 I am planning to create **graphing** software.
 This software could take in functions in terms of x 
 or theta and this could be graphed in cartesian 
-coordinates or polar coordinates.
+coordinates.
 
 This program could be used by mathematicians/engineers/physicists
 who want to graph functions and would like some more
